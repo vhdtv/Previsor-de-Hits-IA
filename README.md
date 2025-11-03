@@ -5,10 +5,6 @@ Projeto da UC **Inteligência Artificial** com objetivo de prever se uma música
 ## 🎯 Objetivo
 Construir e avaliar modelos de Machine Learning para identificar **hit_potencial** com base em atributos de faixas do Spotify (ex.: energy, danceability, loudness, valence, speechiness, instrumentalness, etc.).
 
-## 👥 Equipe
-- Victor Henrique Dias (líder) — coordenação e integração
-- Demais integrantes (7 membros ao todo): cada um responsável por **um modelo**; dois responsáveis por **integração** e **relatórios/apresentação**.
-
 ## 🗂️ Estrutura do Repositório
 ```
 /data
