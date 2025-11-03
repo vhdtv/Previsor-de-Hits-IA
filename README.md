@@ -29,7 +29,7 @@ requirements.txt
   - A regra pode ser ajustada e **deve ser documentada**.
 
 ## 🔧 Preparação dos Dados
-1. Carregar `/data/Pasta1.xlsx`.
+1. Carregar `/data/high_popularity_spotify_data.xlsx`.
 2. Selecionar variáveis relevantes e tratar **valores nulos**.
 3. Codificar variáveis categóricas (ex.: `playlist_genre`, `key`, `mode`) quando necessário.
 4. Padronizar/normalizar variáveis para KNN e Regressão/Naive Bayes quando aplicável.
