@@ -1,0 +1,41 @@
+
+RELATÓRIO – Pipeline K-Means (modelo_kmeans.ipynb)
+
+Seção 1 – Setup e Diretórios
+Define bibliotecas, versões e o diretório PROCESSED_DIR onde os dados preparados e artefatos serão salvos. Objetivo: garantir ambiente consistente e caminhos corretos para leitura/escrita.
+
+Seção 2 – Carregamento do Dataset
+Carrega o arquivo mais recente do dataset preparado (spotify_prepared_v2_*) em formato CSV ou Parquet. Exibe as primeiras linhas para conferência. Objetivo: obter dados já normalizados e codificados para clusterização.
+
+Seção 3 – Seleção de Features
+Remove colunas auxiliares (track_name, playlist_genre, is_hit, etc.) e mantém apenas variáveis numéricas. Cria X_feat (matriz para K-Means) e y_hit (rótulo para avaliação posterior). Objetivo: preparar dados para clustering sem contaminação por labels.
+
+Seção 4 – Escolha do K (Silhouette)
+Testa K de 2 a 8 clusters usando Silhouette Score. Seleciona o K com melhor valor e salva o gráfico silhouette_vs_k.png. Objetivo: determinar número ótimo de clusters com base na separabilidade.
+
+Seção 5 – Treino do Modelo Final
+Treina K-Means com best_k. Calcula hit_rate por cluster e mapeia clusters → “hit-like” (hit_rate ≥ 0.5). Exibe acurácia exploratória vs is_hit. Objetivo: verificar se clusters têm relação com hits.
+
+Seção 6 – Top Features por Cluster
+Calcula Z-score das médias por cluster vs média global. Exporta top_features_per_cluster.csv com as 10 variáveis mais distintivas por cluster. Objetivo: entender características que diferenciam os grupos.
+
+Seção 7 – Diagnósticos Adicionais
+Gera métricas complementares: Elbow (Inertia), Calinski‑Harabasz, Davies‑Bouldin e Silhouette por amostra (gráfico). Exporta kmeans_diagnostics_by_k.csv e kmeans_diagnostics_grid.png. Objetivo: validar robustez da escolha de K.
+
+Seção 8 – Estabilidade (Bootstrap ARI)
+Executa 20 reamostragens (70%) e calcula Adjusted Rand Index vs modelo base. Exporta histograma e CSV. Objetivo: medir consistência do clustering frente a variações nos dados.
+
+Seção 9 – PCA (95% Variância)
+Reduz dimensionalidade mantendo ~95% da variância. Compara Silhouette original vs PCA e gera visualização 2D (pca2_clusters_k*.png). Objetivo: avaliar se redução melhora separação e facilitar visualização.
+
+Seção 10 – Perfis e Exemplos
+Cria cluster_profiles.csv com tamanho do cluster, hit_rate, popularidade média, top gêneros e anos. Gera cluster_examples_topN.csv com faixas mais populares por cluster. Objetivo: fornecer insights de negócio e storytelling.
+
+Seção 11 – Exportação de Artefatos
+Salva em pasta datada: kmeans_final.pkl (modelo), pca_95_var.pkl, metadata.json (best_k, mapping cluster→hit) e principais gráficos/tabelas. Objetivo: permitir reuso do modelo e auditoria.
+
+Seção 12 – Wrapper
+Sugere função para execução ponta-a-ponta. Objetivo: facilitar automação.
+
+Conclusão
+O pipeline implementado no modelo_kmeans.ipynb oferece uma abordagem completa para clusterização exploratória de faixas musicais, incluindo seleção automática do número de clusters, diagnósticos robustos, avaliação de estabilidade, redução dimensional opcional (PCA), perfis interpretáveis e exportação organizada. Não apenas identifica grupos naturais de músicas, como também fornece insights acionáveis sobre características que diferenciam hits, auxiliando decisões estratégicas em curadoria, marketing e previsão de tendências.
